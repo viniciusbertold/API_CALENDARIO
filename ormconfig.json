@@ -1,0 +1,13 @@
+{
+    "type": "postgres",
+    "host": "localhost",
+    "port": "5432",
+    "username": "postgres",
+    "password": "123456789",
+    "database": "CALENDARIO",
+    "migrations": ["./src/database/migrations/**.ts"],
+    "entities": ["./src/entities/**.ts", "./Dist/entities/*.js"],
+    "cli": {
+        "migrationsDir": "./src/database/migrations"
+    }
+}
