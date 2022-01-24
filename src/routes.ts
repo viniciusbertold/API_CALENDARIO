@@ -17,6 +17,8 @@ routes.post('/autenticacao', AuthController.authenticate);
 //ROTA PARA CONTROLE DE AGENDA
 routes.get('/agenda', authmiddle.auth, AgendaController.show);
 routes.post('/agenda', authmiddle.auth, AgendaController.create);
+routes.put('/agenda_usuario/:CD_AGENDA', authmiddle.auth, authmiddle.cd_user, AgendaController.update_agenda_usuario);
+routes.put('/agenda/:CD_AGENDA', authmiddle.auth, AgendaController.update);
 
 //ROTA PARA CONTROLE DE AGENDAMENTO
 routes.get('/agendamento', authmiddle.auth, AgendamentoController.show);

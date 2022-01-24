@@ -10,7 +10,6 @@ export default {
         const {EMAIL, SENHA} = req.body;
     
         const usuario = await userRep.findOne({where: {EMAIL}})
-
         if(!usuario){
             return res.status(401).json({MENSAGEM: 'USUARIO NÃO ENCONTRADO'})
         }
