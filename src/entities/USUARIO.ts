@@ -1,7 +1,7 @@
 import { PrimaryGeneratedColumn, ManyToMany, OneToMany, JoinColumn, JoinTable, Column, BeforeUpdate, BeforeInsert, Entity} from "typeorm";
 import bcrypt from 'bcryptjs';
 import Agenda from './AGENDA';
-import Agendamento from './AGENDAMENTO'
+import Evento from './EVENTO'
 
 @Entity('USUARIO')
 export default class Usuario {
@@ -20,18 +20,13 @@ export default class Usuario {
     @ManyToMany(() => Agenda, agenda => agenda.USUARIO, {
         cascade: ['insert', 'update']
     })
-    @JoinTable({
-        name: 'AGENDA_USUARIO',
-        joinColumns: [{name: 'CD_USUARIO'}],
-        inverseJoinColumns: [{name: 'CD_AGENDA'}]
-    })
     AGENDA: Agenda[];
 
-    @OneToMany(() => Agendamento, agendamento => agendamento.USUARIO, {
+    @OneToMany(() => Evento, evento => evento.USUARIO, {
         cascade: ['insert', 'update']
     })
     @JoinColumn({ name: 'CD_USUARIO'})
-    AGENDAMENTO: Agendamento;
+    EVENTO: Evento;
 
     @BeforeInsert()
     @BeforeUpdate()

@@ -1,6 +1,6 @@
-import { PrimaryGeneratedColumn, Column, Entity, ManyToMany, OneToMany} from "typeorm";
+import { PrimaryGeneratedColumn, Column, Entity, ManyToMany, OneToMany, JoinTable} from "typeorm";
 import Usuario from './USUARIO';
-import Agendamento from './AGENDAMENTO';
+import Evento from './EVENTO';
 
 @Entity('AGENDA')
 export default class Agenda {
@@ -17,12 +17,18 @@ export default class Agenda {
     NOME: string;
 
     @ManyToMany(() => Usuario, usuario => usuario.AGENDA, {
-        cascade: ['insert', 'update']
+        cascade: ['insert', 'update'],
+        eager: true
+    })
+    @JoinTable({
+        name: 'AGENDA_USUARIO',
+        joinColumns: [{name: 'CD_AGENDA'}],
+        inverseJoinColumns: [{name: 'CD_USUARIO'}],
     })
     USUARIO: Usuario[];
 
-    @OneToMany(() => Agendamento, agendamento => agendamento.AGENDA, {
+    @OneToMany(() => Evento, evento => evento.AGENDA, {
         cascade: ['insert', 'update']
     })
-    AGENDAMENTO: Agendamento;
+    EVENTO: Evento;
 }
