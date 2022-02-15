@@ -2,10 +2,10 @@ import { PrimaryGeneratedColumn, Column, Entity, ManyToOne, JoinColumn} from "ty
 import Usuario from './USUARIO';
 import Agenda from './AGENDA';
 
-@Entity('AGENDAMENTO')
-export default class Agendamento {
+@Entity('EVENTO')
+export default class Evento {
     @PrimaryGeneratedColumn('increment')
-    CD_AGENDAMENTO: number;
+    CD_EVENTO: number;
 
     @Column()
     CD_USUARIO: number;
@@ -22,13 +22,13 @@ export default class Agendamento {
     @Column()
     DATA: Date;
 
-    @ManyToOne(() => Usuario, usuario => usuario.AGENDAMENTO, {
+    @ManyToOne(() => Usuario, usuario => usuario.EVENTO, {
         cascade: ['insert', 'update']
     })
     @JoinColumn({name: 'CD_USUARIO'})
     USUARIO: Usuario[];
 
-    @ManyToOne(() => Agenda, agenda => agenda.AGENDAMENTO, {
+    @ManyToOne(() => Agenda, agenda => agenda.EVENTO, {
         cascade: ['insert', 'update']
     })
     @JoinColumn({name: 'CD_AGENDA'})

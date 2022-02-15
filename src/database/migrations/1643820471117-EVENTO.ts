@@ -1,13 +1,13 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class AGENDAMENTO1642105181037 implements MigrationInterface {
+export class EVENTO1643820471117 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
-            name:'AGENDAMENTO',
+            name:'EVENTO',
             columns: [
                 {
-                    name: 'CD_AGENDAMENTO',
+                    name: 'CD_EVENTO',
                     type: 'int',
                     isPrimary: true,
                     isGenerated: true,
@@ -37,7 +37,7 @@ export class AGENDAMENTO1642105181037 implements MigrationInterface {
             ],
             foreignKeys: [
                 {
-                    name: 'FK_AGENDAMENTO_USUARIO',
+                    name: 'FK_EVENTO_USUARIO',
                     columnNames: ['CD_USUARIO'],
                     referencedTableName: 'USUARIO',
                     referencedColumnNames: ['CD_USUARIO'],
@@ -45,7 +45,7 @@ export class AGENDAMENTO1642105181037 implements MigrationInterface {
                     onUpdate: 'CASCADE'
                 },
                 {
-                    name: 'FK_AGENDAMENTO_AGENDA',
+                    name: 'FK_EVENTO_AGENDA',
                     columnNames: ['CD_AGENDA'],
                     referencedTableName: 'AGENDA',
                     referencedColumnNames: ['CD_AGENDA'],
@@ -57,7 +57,7 @@ export class AGENDAMENTO1642105181037 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('AGENDAMENTO')
+        await queryRunner.dropTable('EVENTO')
     }
 
 }
